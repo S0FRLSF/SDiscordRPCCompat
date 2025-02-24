@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Modding Libs" type="Haxe">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../../../../../FNF Modding/.haxeToolkit" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

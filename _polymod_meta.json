@@ -1,0 +1,13 @@
+{
+  "title": "Discord RPC Compat",
+  "description": "Discord RPC Compat is a mod that shows for mods that are compatible (see in GameBanana description) to show the correct album cover/opponent icon in Discord RPC.",
+  "contributors": [
+    {
+      "name": "ImVeryBad",
+      "role": "Developer"
+    }
+  ],
+  "api_version": "0.5.0",
+  "mod_version": "1.0.0",
+  "license": "MIT"
+}
