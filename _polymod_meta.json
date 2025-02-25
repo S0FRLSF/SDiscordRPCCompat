@@ -1,6 +1,6 @@
 {
   "title": "Discord RPC Compat",
-  "description": "Discord RPC Compat is a mod that shows for mods that are compatible (see in GameBanana description) to show the correct album cover/opponent icon in Discord RPC.",
+  "description": "Discord RPC Compat is a mod that tries to add the compatibility (see in GameBanana description) for Friday Night Funkin's discord RPC to show the correct album cover and opponent icon for mods instead of the basic ones.",
   "contributors": [
     {
       "name": "ImVeryBad",
