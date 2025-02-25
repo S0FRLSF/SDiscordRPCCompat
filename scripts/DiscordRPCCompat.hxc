@@ -1,0 +1,25 @@
+import funkin.modding.module.Module;
+import funkin.play.PlayState;
+import funkin.play.PauseSubState;
+
+class DiscordRPCCompat extends Module {
+    var state:PlayState;
+
+    function new() {
+        super("DiscordRPCCompat", 1);
+    }
+
+    override function onSongLoaded(event:SongLoadScriptEvent) {
+        if (PlayState.instance == null) return;
+        state = PlayState.instance;
+    }
+
+    // Cleanup stuff
+    override function onSubStateOpenBegin(event:SubStateScriptEvent) { if (!Std.isOfType(event.targetState, PlayState) && !Std.isOfType(event.targetState, PauseSubState)) state = null; }
+
+    override function onSubStateCloseBegin(event:SubStateScriptEvent) { if (Std.isOfType(event.targetState, PlayState)) state = null; }
+
+    override function onSongEnd(event:ScriptEvent) { state = null; }
+
+    override function onDestroy(event:ScriptEvent) { state = null; }
+}
