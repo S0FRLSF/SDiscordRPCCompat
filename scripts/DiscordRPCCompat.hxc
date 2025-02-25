@@ -10,10 +10,16 @@ class DiscordRPCCompat extends Module {
         super("DiscordRPCCompat", 1);
     }
 
+    var compatbileMods:Array<String> = [
+        // Hazlenuts
+        "Waterworks"
+    ] ;
+
     override function onSongLoaded(event:SongLoadScriptEvent) {
         if (PlayState.instance == null) return;
         state = PlayState.instance;
-        state.discordRPCAlbum = "https://github.com/Starexify/DiscordRPCCompat/blob/assets/album-covers/" +  state.currentChart.album + ".png?raw=true";
+        if (compatbileMods.indexOf(state.currentChart.songName) == -1) return;
+        state.discordRPCAlbum = "https://github.com/Starexify/DiscordRPCCompat/blob/assets/album-covers/" + state.currentChart.album + ".png?raw=true";
         state.discordRPCIcon = "https://github.com/Starexify/DiscordRPCCompat/blob/assets/icons/" + state.currentChart.characters.opponent + ".png?raw=true";
     }
 
