@@ -5,9 +5,6 @@ import funkin.play.PlayState;
 
 class DiscordRPCCompat extends Module {
     var state:PlayState;
-    var discord:DiscordClient = DiscordClient.instance ;
-    var discordRPCAlbum:String = "";
-    var discordRPCIcon:String = "";
 
     function new() {
         super("DiscordRPCCompat", 1);
