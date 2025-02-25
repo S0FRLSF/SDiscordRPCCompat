@@ -12,7 +12,9 @@ class DiscordRPCCompat extends Module {
 
     var compatbileMods:Array<String> = [
         // Hazlenuts
-        "Waterworks"
+        "Waterworks",
+        // sussus-snowgus
+        "sussus-snowgus"
     ] ;
 
     override function onSongLoaded(event:SongLoadScriptEvent) {
