@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Discord RPC Compat.iml" filepath="$PROJECT_DIR$/Discord RPC Compat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DiscordRPCCompat.iml" filepath="$PROJECT_DIR$/DiscordRPCCompat.iml" />
     </modules>
   </component>
 </project>

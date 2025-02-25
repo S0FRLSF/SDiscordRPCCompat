@@ -4,7 +4,7 @@
     <option name="buildConfig" value="1" />
     <option name="haxeTarget" value="Interpretation" />
     <option name="hxmlPath" value="$MODULE_DIR$/build.hxml" />
-    <option name="outputFolder" value="$MODULE_DIR$/out/production/Discord RPC Compat" />
+    <option name="outputFolder" value="$MODULE_DIR$/out/production/DiscordRPCCompat" />
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />

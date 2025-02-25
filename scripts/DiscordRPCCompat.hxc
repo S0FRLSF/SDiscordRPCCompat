@@ -1,9 +1,13 @@
 import funkin.modding.module.Module;
-import funkin.play.PlayState;
+import funkin.api.discord.DiscordClient;
 import funkin.play.PauseSubState;
+import funkin.play.PlayState;
 
 class DiscordRPCCompat extends Module {
     var state:PlayState;
+    var discord:DiscordClient = DiscordClient.instance ;
+    var discordRPCAlbum:String = "";
+    var discordRPCIcon:String = "";
 
     function new() {
         super("DiscordRPCCompat", 1);
@@ -12,6 +16,8 @@ class DiscordRPCCompat extends Module {
     override function onSongLoaded(event:SongLoadScriptEvent) {
         if (PlayState.instance == null) return;
         state = PlayState.instance;
+        state.discordRPCAlbum = "https://github.com/Starexify/DiscordRPCCompat/blob/assets/album-covers/" +  state.currentChart.album + ".png?raw=true";
+        state.discordRPCIcon = "https://github.com/Starexify/DiscordRPCCompat/blob/assets/icons/" + state.currentChart.characters.opponent + ".png?raw=true";
     }
 
     // Cleanup stuff
