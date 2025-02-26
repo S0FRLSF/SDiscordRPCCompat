@@ -14,7 +14,7 @@ class DiscordRPCCompat extends Module {
         "Bonedoggle", "Ritual", "Freaky-Machine", "Believe It!", "Mushroom Plains", "Bricks and Lifst", "Lethal Lava Lair", "Deep Deep Voyage", "Hop-Hop Heights", "Koopa Armada",
         "2 PLAYER GAME", "Destruction Dance", "Portal Power", "Bullet Time", "Boo Blitz", "Cross Console Clash", "Love's End", "Forever Syndrome", "Forever Syndrome Remix",
         "Bullet Time Remix", "Hyperactive Starblaze", "Co-op", "Snowy Plains", "Dream Machine", "Jery", "Confidence", "Files", "Foolhardy", "Bushwhack", "Weedkiller", "Foolhardy D-Side",
-        "Weedkiller D-Side", "Foolhardy-2023", "Foolhardy-Retrospecter", "Remazed", "Trapped", "Haystack"
+        "Weedkiller D-Side", "Foolhardy-2023", "Foolhardy-Retrospecter", "Remazed", "Trapped", "Haystack", "Overload", "Eradication"
     ] ;
 
     var albumOnlyMods:Array<String> = [
