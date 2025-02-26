@@ -9,14 +9,7 @@ class DiscordRPCCompat extends Module {
     }
 
     var compatbileMods:Array<String> = [
-        // Hazlenuts
-        "Waterworks",
-            // sussus-snowgus
-        "sussus-snowgus",
-            // IRN BRU
-        "Daizy", "Binge", "Sip",
-        // QT: Rewired
-        "Blissful", "Obliterated"
+        "Waterworks", "sussus-snowgus", "Daizy", "Binge", "Sip", "Blissful", "Obliterated", "Redeemer", "Mortality", "CHAMB3R"
     ] ;
 
     override function onSongLoaded(event:SongLoadScriptEvent) {
