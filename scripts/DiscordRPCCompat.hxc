@@ -11,15 +11,16 @@ class DiscordRPCCompat extends Module {
     var compatbileMods:Array<String> = [
         // Hazlenuts
         "Waterworks",
-        // sussus-snowgus
+            // sussus-snowgus
         "sussus-snowgus",
-        // IRN BRU
+            // IRN BRU
         "Daizy", "Binge", "Sip"
     ] ;
 
     override function onSongLoaded(event:SongLoadScriptEvent) {
+        if (PlayState.instance == null) return;
         if (compatbileMods.indexOf(state.currentChart.songName) == -1) return;
-        PlayState.instance.discordRPCAlbum = "https://github.com/Starexify/DiscordRPCCompat/blob/assets/album-covers/" + state.currentChart.album + ".png?raw=true";
-        PlayState.instance.discordRPCIcon = "https://github.com/Starexify/DiscordRPCCompat/blob/assets/icons/" + state.currentChart.characters.opponent + ".png?raw=true";
+        PlayState.instance.discordRPCAlbum = "https://github.com/Starexify/DiscordRPCCompat/blob/assets/album-covers/" + PlayState.instance.currentChart.album + ".png?raw=true";
+        PlayState.instance.discordRPCIcon = "https://github.com/Starexify/DiscordRPCCompat/blob/assets/icons/" + PlayState.instance.currentChart.characters.opponent + ".png?raw=true";
     }
 }
