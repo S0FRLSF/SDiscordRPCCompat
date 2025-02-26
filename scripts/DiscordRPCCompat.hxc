@@ -1,6 +1,4 @@
 import funkin.modding.module.Module;
-import funkin.api.discord.DiscordClient;
-import funkin.play.PauseSubState;
 import funkin.play.PlayState;
 
 class DiscordRPCCompat extends Module {
@@ -9,7 +7,9 @@ class DiscordRPCCompat extends Module {
     }
 
     var compatbileMods:Array<String> = [
-        "Waterworks", "sussus-snowgus", "Daizy", "Binge", "Sip", "Blissful", "Obliterated", "Redeemer", "Mortality", "CHAMB3R"
+        "Waterworks", "sussus-snowgus", "Daizy", "Binge", "Sip", "Blissful", "Obliterated", "Redeemer", "Mortality", "CHAMB3R", "High School Conflict", "Bara no Yume", "Your Demise",
+        "Your Reality (Takeover Mix)", "Rain Clouds", "My Confession", "My Sweets", "Baka", "Deep Breaths", "Obsession", "You and Me", "Dokidoggle", "Poems n Thorns", "Epiphany",
+        "Drinks on Me", "Catfight", "Wilted", "MSTSOOBF"
     ] ;
 
     override function onSongLoaded(event:SongLoadScriptEvent) {
