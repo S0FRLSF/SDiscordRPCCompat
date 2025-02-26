@@ -11,11 +11,11 @@ class DiscordRPCCompat extends Module {
         "Your Reality (Takeover Mix)", "Rain Clouds", "My Confession", "My Sweets", "Baka", "Deep Breaths", "Obsession", "You and Me", "Dokidoggle", "Poems n Thorns", "Epiphany",
         "Drinks on Me", "Catfight", "Wilted", "MSTSOOBF", "Headache", "Nerves", "Release", "Headache (OG)", "Nerves (OG)", "Release (OG)", "Snake-Eyes", "Technicolor-Tussle",
         "Knockout", "Whoopee", "Sansational", "Burning-In-Hell", "Final-Stretch", "Imminent-Demise", "Terrible-Sin", "Last-Reel", "Nightmare-Run", "Satanic-Funkin", "Bad-To-The-Bone",
-        "Bonedoggle", "Ritual", "Freaky-Machine"
+        "Bonedoggle", "Ritual", "Freaky-Machine", "Believe It!"
     ] ;
 
     var albumOnlyMods:Array<String> = [
-        "(Gooey Mix)"
+        "(Gooey Mix)", "(PaRappa Mix)"
     ] ;
 
     override function onSongLoaded(event:SongLoadScriptEvent) {
