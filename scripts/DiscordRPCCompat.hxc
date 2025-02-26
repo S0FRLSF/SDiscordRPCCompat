@@ -21,8 +21,10 @@ class DiscordRPCCompat extends Module {
     override function onSongLoaded(event:SongLoadScriptEvent) {
         if (PlayState.instance == null) return;
         var songName:String = PlayState.instance.currentChart.songName;
-        if (albumOnlyMods.indexOf(songName) != -1) {
-            PlayState.instance.discordRPCAlbum = "https://github.com/Starexify/DiscordRPCCompat/blob/assets/album-covers/" + PlayState.instance.currentChart.album + ".png?raw=true";
+        for (suffix in albumOnlyMods) {
+            if (songName.indexOf(suffix) != -1) {
+                PlayState.instance.discordRPCAlbum = "https://github.com/Starexify/DiscordRPCCompat/blob/assets/album-covers/" + PlayState.instance.currentChart.album + ".png?raw=true";
+            }
         }
         if (compatbileMods.indexOf(songName) != -1) {
             PlayState.instance.discordRPCAlbum = "https://github.com/Starexify/DiscordRPCCompat/blob/assets/album-covers/" + PlayState.instance.currentChart.album + ".png?raw=true";
