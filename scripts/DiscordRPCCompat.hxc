@@ -12,10 +12,19 @@ class DiscordRPCCompat extends Module {
         "Drinks on Me", "Catfight", "Wilted", "MSTSOOBF", "Headache", "Nerves", "Release", "Headache (OG)", "Nerves (OG)", "Release (OG)"
     ] ;
 
+    var albumOnlyMods:Array<String> = [
+        "(Gooey Mix)"
+    ] ;
+
     override function onSongLoaded(event:SongLoadScriptEvent) {
         if (PlayState.instance == null) return;
-        if (compatbileMods.indexOf(PlayState.instance.currentChart.songName) == -1) return;
-        PlayState.instance.discordRPCAlbum = "https://github.com/Starexify/DiscordRPCCompat/blob/assets/album-covers/" + PlayState.instance.currentChart.album + ".png?raw=true";
-        PlayState.instance.discordRPCIcon = "https://github.com/Starexify/DiscordRPCCompat/blob/assets/icons/" + PlayState.instance.currentChart.characters.opponent + ".png?raw=true";
+        var songName:String = PlayState.instance.currentChart.songName;
+        if (albumOnlyMods.indexOf(songName) != -1) {
+            PlayState.instance.discordRPCAlbum = "https://github.com/Starexify/DiscordRPCCompat/blob/assets/album-covers/" + PlayState.instance.currentChart.album + ".png?raw=true";
+        }
+        if (compatbileMods.indexOf(songName) != -1) {
+            PlayState.instance.discordRPCAlbum = "https://github.com/Starexify/DiscordRPCCompat/blob/assets/album-covers/" + PlayState.instance.currentChart.album + ".png?raw=true";
+            PlayState.instance.discordRPCIcon = "https://github.com/Starexify/DiscordRPCCompat/blob/assets/icons/" + PlayState.instance.currentChart.characters.opponent + ".png?raw=true";
+        }
     }
 }
