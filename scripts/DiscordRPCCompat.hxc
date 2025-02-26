@@ -9,7 +9,7 @@ class DiscordRPCCompat extends Module {
     var compatbileMods:Array<String> = [
         "Waterworks", "sussus-snowgus", "Daizy", "Binge", "Sip", "Blissful", "Obliterated", "Redeemer", "Mortality", "CHAMB3R", "High School Conflict", "Bara no Yume", "Your Demise",
         "Your Reality (Takeover Mix)", "Rain Clouds", "My Confession", "My Sweets", "Baka", "Deep Breaths", "Obsession", "You and Me", "Dokidoggle", "Poems n Thorns", "Epiphany",
-        "Drinks on Me", "Catfight", "Wilted", "MSTSOOBF"
+        "Drinks on Me", "Catfight", "Wilted", "MSTSOOBF", "Headache", "Nerves", "Release", "Headache (OG)", "Nerves (OG)", "Release (OG)"
     ] ;
 
     override function onSongLoaded(event:SongLoadScriptEvent) {
