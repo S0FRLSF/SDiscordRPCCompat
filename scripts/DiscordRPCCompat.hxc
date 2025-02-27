@@ -1,38 +1,38 @@
 import funkin.modding.module.Module;
 import funkin.play.PlayState;
 
+import openfl.net.URLLoader;
+import openfl.net.URLRequest;
+
+import Date;
+import StringTools;
+
 class DiscordRPCCompat extends Module {
     function new() {
         super("DiscordRPCCompat", 1);
     }
 
-    var compatbileMods:Array<String> = [
-        "Waterworks", "sussus-snowgus", "Daizy", "Binge", "Sip", "Blissful", "Obliterated", "Redeemer", "Mortality", "CHAMB3R", "High School Conflict", "Bara no Yume", "Your Demise",
-        "Your Reality (Takeover Mix)", "Rain Clouds", "My Confession", "My Sweets", "Baka", "Deep Breaths", "Obsession", "You and Me", "Dokidoggle", "Poems n Thorns", "Epiphany",
-        "Drinks on Me", "Catfight", "Wilted", "MSTSOOBF", "Headache", "Nerves", "Release", "Headache (OG)", "Nerves (OG)", "Release (OG)", "Snake-Eyes", "Technicolor-Tussle",
-        "Knockout", "Whoopee", "Sansational", "Burning-In-Hell", "Final-Stretch", "Imminent-Demise", "Terrible-Sin", "Last-Reel", "Nightmare-Run", "Satanic-Funkin", "Bad-To-The-Bone",
-        "Bonedoggle", "Ritual", "Freaky-Machine", "Believe It!", "Mushroom Plains", "Bricks and Lifst", "Lethal Lava Lair", "Deep Deep Voyage", "Hop-Hop Heights", "Koopa Armada",
-        "2 PLAYER GAME", "Destruction Dance", "Portal Power", "Bullet Time", "Boo Blitz", "Cross Console Clash", "Love's End", "Forever Syndrome", "Forever Syndrome Remix",
-        "Bullet Time Remix", "Hyperactive Starblaze", "Co-op", "Snowy Plains", "Dream Machine", "Jery", "Confidence", "Files", "Foolhardy", "Bushwhack", "Weedkiller", "Foolhardy D-Side",
-        "Weedkiller D-Side", "Foolhardy-2023", "Foolhardy-Retrospecter", "Remazed", "Trapped", "Haystack", "Overload", "Eradication", "Parish", "Worship", "Zavodilla", "Gospel", "Casanova",
-        "Ultraviolet", "Amarillo", "Parasiticide", "wokemindvirus"
-    ] ;
-
-    var albumOnlyMods:Array<String> = [
-        "(Gooey Mix)", "(PaRappa Mix)"
-    ] ;
-
     override function onSongLoaded(event:SongLoadScriptEvent) {
         if (PlayState.instance == null) return;
-        var songName:String = PlayState.instance.currentChart.songName;
-        for (suffix in albumOnlyMods) {
-            if (songName.indexOf(suffix) != -1) {
-                PlayState.instance.discordRPCAlbum = "https://github.com/Starexify/DiscordRPCCompat/blob/assets/album-covers/" + PlayState.instance.currentChart.album + ".png?raw=true";
+        var songName = PlayState.instance.currentChart.songName;
+        var timeStamp = Date.now().getTime();
+        var loader:URLLoader = new URLLoader();
+        loader.addEventListener("complete", event -> {
+            var rawData:String = loader.data;
+            var compatbileMods:Array<String> = rawData.split(",").map(item -> return StringTools.trim(item));
+            if (compatbileMods.indexOf(songName) != -1) {
+                PlayState.instance.discordRPCAlbum = "https://github.com/Starexify/DiscordRPCCompat/blob/assets/album-covers/" + PlayState.instance.currentChart.album + ".png?raw=true?t=" + timeStamp;
+                PlayState.instance.discordRPCIcon = "https://github.com/Starexify/DiscordRPCCompat/blob/assets/icons/" + PlayState.instance.currentChart.characters.opponent + ".png?raw=true?t=" + timeStamp;
             }
-        }
-        if (compatbileMods.indexOf(songName) != -1) {
-            PlayState.instance.discordRPCAlbum = "https://github.com/Starexify/DiscordRPCCompat/blob/assets/album-covers/" + PlayState.instance.currentChart.album + ".png?raw=true";
-            PlayState.instance.discordRPCIcon = "https://github.com/Starexify/DiscordRPCCompat/blob/assets/icons/" + PlayState.instance.currentChart.characters.opponent + ".png?raw=true";
-        }
+        });
+        loader.load(new URLRequest("https://raw.githubusercontent.com/Starexify/DiscordRPCCompat/refs/heads/assets/CompatSongList.txt?t=" + timeStamp));
+
+        var albumLoader:URLLoader = new URLLoader();
+        albumLoader.addEventListener("complete", event -> {
+            var rawData:String = loader.data;
+            var albumOnlyMods:Array<String> = rawData.split(",").map(item -> return StringTools.trim(item));
+            for (suffix in albumOnlyMods) if (songName.indexOf(suffix) != -1) PlayState.instance.discordRPCAlbum = "https://github.com/Starexify/DiscordRPCCompat/blob/assets/album-covers/" + PlayState.instance.currentChart.album + ".png?raw=true?t=" + timeStamp;
+        });
+        albumLoader.load(new URLRequest("https://raw.githubusercontent.com/Starexify/DiscordRPCCompat/refs/heads/assets/AlbumOnlyMods.txt?t=" + timeStamp));
     }
 }
