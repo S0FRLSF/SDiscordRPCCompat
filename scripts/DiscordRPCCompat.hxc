@@ -29,7 +29,7 @@ class DiscordRPCCompat extends Module {
 
         var albumLoader:URLLoader = new URLLoader();
         albumLoader.addEventListener("complete", event -> {
-            var rawData:String = loader.data;
+            var rawData:String = albumLoader.data;
             var albumOnlyMods:Array<String> = rawData.split(",").map(item -> return StringTools.trim(item));
             for (suffix in albumOnlyMods) if (songName.indexOf(suffix) != -1) PlayState.instance.discordRPCAlbum = "https://github.com/Starexify/DiscordRPCCompat/blob/assets/album-covers/" + PlayState.instance.currentChart.album + ".png?raw=true?t=" + timeStamp;
         });
