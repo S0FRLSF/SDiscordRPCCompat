@@ -14,26 +14,40 @@ class DiscordRPCCompat extends Module {
 
     override function onSongLoaded(event:SongLoadScriptEvent) {
         if (PlayState.instance == null) return;
+
         var songName = PlayState.instance.currentChart.songName;
         var timeStamp = Date.now().getTime();
+        var rawTextURL = "https://raw.githubusercontent.com/Starexify/DiscordRPCCompat/refs/heads/assets/";
 
-        var albumLoader:URLLoader = new URLLoader();
-        albumLoader.addEventListener("complete", event -> {
-            var rawData:String = albumLoader.data;
-            var albumOnlyMods:Array<String> = rawData.split(",").map(item -> return StringTools.trim(item));
-            for (suffix in albumOnlyMods) if (songName.indexOf(suffix) != -1) PlayState.instance.discordRPCAlbum = "https://github.com/Starexify/DiscordRPCCompat/blob/assets/album-covers/" + PlayState.instance.currentChart.album + ".png?raw=true?t=" + timeStamp;
-        });
-        albumLoader.load(new URLRequest("https://raw.githubusercontent.com/Starexify/DiscordRPCCompat/refs/heads/assets/AlbumOnlyMods.txt?t=" + timeStamp));
+        // Load album-only mods
+        var albumLoader = new URLLoader();
+        albumLoader.addEventListener("complete", event -> for (suffix in parseList(albumLoader.data)) if (songName.indexOf(suffix) != -1) setRPCAlbum(timeStamp));
+        albumLoader.load(new URLRequest(rawTextURL + "AlbumOnlyMods.txt?t=" + timeStamp));
 
-        var loader:URLLoader = new URLLoader();
-        loader.addEventListener("complete", event -> {
-            var rawData:String = loader.data;
-            var compatbileMods:Array<String> = rawData.split(",").map(item -> return StringTools.trim(item));
-            if (compatbileMods.indexOf(songName) != -1) {
-                PlayState.instance.discordRPCAlbum = "https://github.com/Starexify/DiscordRPCCompat/blob/assets/album-covers/" + PlayState.instance.currentChart.album + ".png?raw=true?t=" + timeStamp;
-                PlayState.instance.discordRPCIcon = "https://github.com/Starexify/DiscordRPCCompat/blob/assets/icons/" + PlayState.instance.currentChart.characters.opponent + ".png?raw=true?t=" + timeStamp;
-            }
+        // Load icon-only mods
+        var iconLoader = new URLLoader();
+        iconLoader.addEventListener("complete", event -> for (suffix in parseList(iconLoader.data)) if (songName.indexOf(suffix) != -1) setRPCIcon(timeStamp));
+        iconLoader.load(new URLRequest(rawTextURL + "IconOnlyMods.txt?t=" + timeStamp));
+
+        // Load compatible mods (both album and icon)
+        var loader = new URLLoader();
+        loader.addEventListener("complete",
+        event -> if (parseList(loader.data).indexOf(songName) != -1) {
+            setRPCAlbum(timeStamp);
+            setRPCIcon(timeStamp);
         });
-        loader.load(new URLRequest("https://raw.githubusercontent.com/Starexify/DiscordRPCCompat/refs/heads/assets/CompatSongList.txt?t=" + timeStamp));
+        loader.load(new URLRequest(rawTextURL + "CompatSongList.txt?t=" + timeStamp));
+    }
+
+    function parseList(rawData:String):Array<String> {
+        return rawData.split(",").map(item -> StringTools.trim(item));
+    }
+
+    function setRPCAlbum(timeStamp:Float):Void {
+        PlayState.instance.discordRPCAlbum = "https://github.com/Starexify/DiscordRPCCompat/blob/assets/album-covers/" + PlayState.instance.currentChart.album + ".png?raw=true?t=" + timeStamp;
+    }
+
+    function setRPCIcon(timeStamp:Float):Void {
+        PlayState.instance.discordRPCIcon = "https://github.com/Starexify/DiscordRPCCompat/blob/assets/icons/" + PlayState.instance.currentChart.characters.opponent + ".png?raw=true?t=" + timeStamp;
     }
 }
